@@ -25,8 +25,19 @@ class Transaction # < ApplicationRecord
 
   def self.all_subtractions
     @@instances.find_all do |transaction|
-      transaction.points < 0 
+      transaction.points < 0
     end
+  end
+
+  def self.spent_hash
+    subtraction_hash = Hash.new(0)
+
+    self.all_subtractions.each do |transaction|
+      # binding.pry
+      subtraction_hash[transaction.payer] += transaction.points
+    end
+
+    return subtraction_hash
   end
 
 end
