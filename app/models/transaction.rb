@@ -15,7 +15,6 @@ class Transaction # < ApplicationRecord
     @@instances << self
   end
 
-
   def self.all
     @@instances
   end
