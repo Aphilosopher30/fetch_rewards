@@ -23,4 +23,10 @@ class Transaction # < ApplicationRecord
     @@instances = []
   end
 
+  def self.all_subtractions
+    @@instances.find_all do |transaction|
+      transaction.points < 0 
+    end
+  end
+
 end

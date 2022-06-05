@@ -73,6 +73,40 @@ RSpec.describe Transaction do
       expect(Transaction.all.class).to eq(Array)
       expect(Transaction.all.length).to eq(2)
     end
+
+    it '.all_subtractions returns all negative, and only negative transactions' do
+      Transaction.delte_all
+
+      time = Time.now
+      data = {
+              payer: "company co",
+              points: -100,
+              time_stamp: time
+              }
+      transaction = Transaction.new(data)
+
+      time2 = Time.now
+      data2 = {
+              payer: "binsnss bizz",
+              points: 500,
+              time_stamp: time2
+              }
+      transaction2 = Transaction.new(data2)
+
+      time3 = Time.now
+      data3 = {
+              payer: "binsnss bizz",
+              points: -300,
+              time_stamp: time3
+              }
+      transaction3 = Transaction.new(data3)
+
+      expect(Transaction.all_subtractions.length).to eq(2)
+      Transaction.all_subtractions.each do |trans|
+        expect(trans.points <= 0).to eq(true )
+      end
+    end
+
   end
 
 end
