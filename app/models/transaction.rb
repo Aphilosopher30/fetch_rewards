@@ -19,7 +19,7 @@ class Transaction # < ApplicationRecord
     @@instances
   end
 
-  def self.delte_all
+  def self.delete_all
     @@instances = []
   end
 

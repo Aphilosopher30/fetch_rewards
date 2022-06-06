@@ -42,7 +42,7 @@ RSpec.describe Transaction do
 
       expect(Transaction.all.class).to_not eq([])
 
-      Transaction.delte_all
+      Transaction.delete_all
 
       expect(Transaction.all).to eq([])
 
@@ -50,7 +50,7 @@ RSpec.describe Transaction do
 
     it '.all returns a list of every transaction' do
 
-      Transaction.delte_all
+      Transaction.delete_all
 
       time = Time.now
       data = {
@@ -75,7 +75,7 @@ RSpec.describe Transaction do
     end
 
     it '.all_subtractions returns all negative, and only negative transactions' do
-      Transaction.delte_all
+      Transaction.delete_all
 
       time = Time.now
       data = {
@@ -108,7 +108,7 @@ RSpec.describe Transaction do
     end
 
     it '.spent_hash returns a hash, which contains the sum of all negative transactions per company' do
-      Transaction.delte_all
+      Transaction.delete_all
 
       time = Time.now
       data = {
