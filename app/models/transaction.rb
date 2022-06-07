@@ -7,7 +7,6 @@ class Transaction # < ApplicationRecord
 
   @@instances = []
 
-
   def initialize(data)
     @payer = data[:payer]
     @points = data[:points]
@@ -39,5 +38,7 @@ class Transaction # < ApplicationRecord
 
     return subtraction_hash
   end
+
+
 
 end
