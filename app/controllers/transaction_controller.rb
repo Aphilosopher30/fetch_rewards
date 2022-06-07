@@ -5,7 +5,7 @@ class TransactionController < ApplicationController
     data = {payer: params[:payer], points: params[:points].to_i}
     begin
       data[:time_stamp] = Time.parse(params[:time_stamp])
-    rescue ArgumentError
+    rescue ArgumentError, TypeError
       data[:time_stamp] = Time.now
     end
 
