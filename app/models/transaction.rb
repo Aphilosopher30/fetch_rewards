@@ -1,5 +1,5 @@
 class Transaction # < ApplicationRecord
-  attr_reader :payer, :points, :time_stamp
+  attr_reader :payer, :points, :time_stamp, :id
 
   # validates :payer, presence: true
   # validates :points, presence: true
@@ -8,6 +8,7 @@ class Transaction # < ApplicationRecord
   @@instances = []
 
   def initialize(data)
+    @id = nil
     @payer = data[:payer]
     @points = data[:points]
     @time_stamp = data[:time_stamp]
