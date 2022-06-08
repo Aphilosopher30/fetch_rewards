@@ -25,6 +25,7 @@ RSpec.describe 'transactions request ', type: :request do
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
+
       it 'can handle not being given a time_stamp' do
         prior_transactions = Transaction.all.count
 
@@ -48,6 +49,7 @@ RSpec.describe 'transactions request ', type: :request do
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
+
       it 'can handle illegitimate time stamp' do
         prior_transactions = Transaction.all.count
 
@@ -71,14 +73,11 @@ RSpec.describe 'transactions request ', type: :request do
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
-
-
     end
 
     describe "sad paths" do
+
+
     end
-
-
   end
-
 end

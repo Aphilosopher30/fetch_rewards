@@ -41,5 +41,18 @@ class Transaction # < ApplicationRecord
   end
 
 
+  def self.sort_points_by_date
+    @@instances.sort_by { |obj| obj.time_stamp }
+  end
+
+  # def spend
+  #   selecct oldest from list.
+  #   add to the list of all negatives
+  #   and when the sum of the list of all negatives is equal to or exceeds the target spending
+  #      then subtract target spending from the sum of all negatives
+  #      take the result and subtract the result from from whatever payers list was last increased
+  #
+  # end
+
 
 end
