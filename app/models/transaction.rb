@@ -33,26 +33,19 @@ class Transaction # < ApplicationRecord
     subtraction_hash = Hash.new(0)
 
     self.all_subtractions.each do |transaction|
-      # binding.pry
       subtraction_hash[transaction.payer] += transaction.points
     end
 
     return subtraction_hash
   end
 
-
-  def self.sort_points_by_date
-    @@instances.sort_by { |obj| obj.time_stamp }
+  def self.all_positive
+    @@instances.find_all do |transaction|
+      transaction.points >= 0
+    end
   end
 
-  # def spend
-  #   selecct oldest from list.
-  #   add to the list of all negatives
-  #   and when the sum of the list of all negatives is equal to or exceeds the target spending
-  #      then subtract target spending from the sum of all negatives
-  #      take the result and subtract the result from from whatever payers list was last increased
-  #
-  # end
-
-
+  def self.sort_aquired_points_by_date
+    self.all_positive.sort_by { |obj| obj.time_stamp.to_i }
+  end
 end

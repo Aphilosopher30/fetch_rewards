@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'user/transactions/new', to: 'transaction#create'
 
 # spend points according to ruesl
-  get 'user/transactions/spend', to: 'user#spend'
+  get 'user/transactions/spend', to: 'transaction#spend'
 
 # list all payers
   get '/user/payers', to: 'user#payers'

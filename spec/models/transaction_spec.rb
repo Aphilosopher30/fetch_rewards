@@ -173,7 +173,7 @@ RSpec.describe Transaction do
       time = Time.parse("2020-07-31T11:00:00.000Z")
       data = {
               payer: "company co",
-              points: -100,
+              points: 100,
               time_stamp: time
               }
 
@@ -182,7 +182,7 @@ RSpec.describe Transaction do
       time1 = Time.parse("2020-08-31T11:00:00.000Z")
       data1 = {
               payer: "company co",
-              points: -150,
+              points: 150,
               time_stamp: time1
               }
       transaction1 = Transaction.new(data1)
@@ -199,7 +199,7 @@ RSpec.describe Transaction do
       time4 = Time.parse("2020-01-31T11:00:00.000Z")
       data4 = {
               payer: "abC corp",
-              points: -400,
+              points: 400,
               time_stamp: time4
               }
       transaction4 = Transaction.new(data4)
@@ -207,7 +207,7 @@ RSpec.describe Transaction do
       time5 = Time.parse("2020-12-31T11:00:00.000Z")
       data5 = {
               payer: "binsnss bizz",
-              points: -300,
+              points: 300,
               time_stamp: time5
               }
       transaction5 = Transaction.new(data5)
@@ -227,15 +227,12 @@ RSpec.describe Transaction do
       expect(Transaction.all[4].time_stamp).to eq(time5)
       expect(Transaction.all[5].time_stamp).to eq(time6)
 
-
-      expect(Transaction.sort_points_by_date[0].time_stamp).to eq(time4)
-      expect(Transaction.sort_points_by_date[1].time_stamp).to eq(time2)
-      expect(Transaction.sort_points_by_date[2].time_stamp).to eq(time)
-      expect(Transaction.sort_points_by_date[3].time_stamp).to eq(time1)
-      expect(Transaction.sort_points_by_date[4].time_stamp).to eq(time6)
-      expect(Transaction.sort_points_by_date[5].time_stamp).to eq(time5)
-
-
+      expect(Transaction.sort_aquired_points_by_date[0].time_stamp).to eq(time4)
+      expect(Transaction.sort_aquired_points_by_date[1].time_stamp).to eq(time2)
+      expect(Transaction.sort_aquired_points_by_date[2].time_stamp).to eq(time)
+      expect(Transaction.sort_aquired_points_by_date[3].time_stamp).to eq(time1)
+      expect(Transaction.sort_aquired_points_by_date[4].time_stamp).to eq(time6)
+      expect(Transaction.sort_aquired_points_by_date[5].time_stamp).to eq(time5)
     end
 
   end
