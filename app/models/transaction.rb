@@ -48,4 +48,13 @@ class Transaction # < ApplicationRecord
   def self.sort_aquired_points_by_date
     self.all_positive.sort_by { |obj| obj.time_stamp.to_i }
   end
+
+  def self.report
+    ledger = Hash.new(0)
+    self.all.each do |transaction|
+      ledger[transaction.payer] += transaction.points
+      # binding.pry
+    end
+    return ledger
+  end
 end

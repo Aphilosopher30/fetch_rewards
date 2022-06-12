@@ -15,16 +15,11 @@ class TransactionController < ApplicationController
 
 
   def spend
-
     cost = params[:points].to_i
     spent_points = Transaction.spent_hash
-
     Transaction.sort_aquired_points_by_date.each do |transaction|
-      # binding.pry
       spent_points[transaction.payer] += transaction.points
-
       total_spent = check_total_money_spent(spent_points)
-
       if total_spent > cost
         over_shot = total_spent - cost
         spent_points[transaction.payer] -= over_shot
@@ -33,15 +28,13 @@ class TransactionController < ApplicationController
     end
 
     total_spent = check_total_money_spent(spent_points)
-
-
     if total_spent == cost
       who_pays = []
       spent_points.each do |payer, point_value|
         if point_value > 0
           data = {payer: payer, points: point_value*-1, time_stamp: Time.now}
           new_transaction = Transaction.new(data)
-          who_pays << new_transaction
+          who_pays << {payer: new_transaction.payer, points: new_transaction.points}
         end
       end
       render json: who_pays, :status => 200

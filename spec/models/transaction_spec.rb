@@ -5,11 +5,11 @@ RSpec.describe Transaction do
   context 'the transaction class exists and has attributes' do
     it 'has atrributes' do
 
-      time = Time.now
+      time0 = Time.now
       data = {
               payer: "company co",
               points: 100,
-              time_stamp: time
+              time_stamp: time0
               }
 
 
@@ -17,7 +17,7 @@ RSpec.describe Transaction do
 
       expect(transaction.payer).to eq('company co')
       expect(transaction.points).to eq(100)
-      expect(transaction.time_stamp).to eq(time)
+      expect(transaction.time_stamp).to eq(time0)
     end
   end
 
@@ -167,17 +167,17 @@ RSpec.describe Transaction do
       expect(Transaction.spent_hash["Ink inc."]).to eq(0)
     end
 
-    it '.sort_points_by_date ' do
+    it '.sort_aquired_points_by_date ' do
       Transaction.delete_all
 
-      time = Time.parse("2020-07-31T11:00:00.000Z")
-      data = {
+      time0 = Time.parse("2020-07-31T11:00:00.000Z")
+      data0 = {
               payer: "company co",
               points: 100,
-              time_stamp: time
+              time_stamp: time0
               }
 
-      transaction = Transaction.new(data)
+      transaction = Transaction.new(data0)
 
       time1 = Time.parse("2020-08-31T11:00:00.000Z")
       data1 = {
@@ -220,7 +220,7 @@ RSpec.describe Transaction do
               }
       transaction6 = Transaction.new(data6)
 
-      expect(Transaction.all[0].time_stamp).to eq(time)
+      expect(Transaction.all[0].time_stamp).to eq(time0)
       expect(Transaction.all[1].time_stamp).to eq(time1)
       expect(Transaction.all[2].time_stamp).to eq(time2)
       expect(Transaction.all[3].time_stamp).to eq(time4)
@@ -229,11 +229,81 @@ RSpec.describe Transaction do
 
       expect(Transaction.sort_aquired_points_by_date[0].time_stamp).to eq(time4)
       expect(Transaction.sort_aquired_points_by_date[1].time_stamp).to eq(time2)
-      expect(Transaction.sort_aquired_points_by_date[2].time_stamp).to eq(time)
+      expect(Transaction.sort_aquired_points_by_date[2].time_stamp).to eq(time0)
       expect(Transaction.sort_aquired_points_by_date[3].time_stamp).to eq(time1)
       expect(Transaction.sort_aquired_points_by_date[4].time_stamp).to eq(time6)
       expect(Transaction.sort_aquired_points_by_date[5].time_stamp).to eq(time5)
     end
+
+    it '.report ' do
+      Transaction.delete_all
+
+      time0 = Time.parse("2020-07-31T11:00:00.000Z")
+      data0 = {
+              payer: "company co",
+              points: 100,
+              time_stamp: time0
+              }
+
+      transaction0 = Transaction.new(data0)
+
+      time1 = Time.parse("2020-08-31T11:00:00.000Z")
+      data1 = {
+              payer: "company co",
+              points: 150,
+              time_stamp: time1
+              }
+      transaction1 = Transaction.new(data1)
+
+
+      time2 = Time.parse("2020-03-31T11:00:00.000Z")
+      data2 = {
+              payer: "binsnss bizz",
+              points: 500,
+              time_stamp: time2
+              }
+      transaction2 = Transaction.new(data2)
+
+      time3 = Time.parse("2020-01-31T11:00:00.000Z")
+      data3 = {
+              payer: "abC corp",
+              points: 400,
+              time_stamp: time3
+              }
+      transaction3 = Transaction.new(data3)
+
+      time4 = Time.parse("2020-01-30T11:00:00.000Z")
+      data4 = {
+              payer: "abC corp",
+              points: -180,
+              time_stamp: time4
+              }
+      transaction4 = Transaction.new(data4)
+
+      time5 = Time.parse("2020-12-31T11:00:00.000Z")
+      data5 = {
+              payer: "binsnss bizz",
+              points: -300,
+              time_stamp: time5
+              }
+      transaction5 = Transaction.new(data5)
+
+      time6 = Time.parse("2020-11-31T11:00:00.000Z")
+      data6 = {
+              payer: "Ink inc.",
+              points: 600,
+              time_stamp: time6
+              }
+      transaction6 = Transaction.new(data6)
+
+      expect(Transaction.report['abC corp']).to eq(220)
+      expect(Transaction.report["Ink inc."]).to eq(600)
+      expect(Transaction.report["binsnss bizz"]).to eq(200)
+      expect(Transaction.report["company co"]).to eq(250)
+
+    end
+
+
 
   end
 

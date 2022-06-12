@@ -139,12 +139,15 @@ RSpec.describe 'transactions request ', type: :request do
 
       transaction_data = JSON.parse(response.body, symbolize_names: true)
 
+# binding.pry
+
       expect(transaction_data.class).to eq(Array)
       expect(transaction_data.length).to eq(3)
       expect(transaction_data[0].class).to eq(Hash)
-      expect(transaction_data[0][:points] > 0).to eq(true)
-      expect(transaction_data[1][:points] > 0).to eq(true)
-      expect(transaction_data[2][:points] > 0).to eq(true)
+      expect(transaction_data[0][:points] < 0).to eq(true)
+      expect(transaction_data[1][:points] < 0).to eq(true)
+      expect(transaction_data[2][:points] < 0).to eq(true)
+
     end
 
 
