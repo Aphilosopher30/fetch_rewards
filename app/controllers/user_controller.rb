@@ -1,8 +1,7 @@
 class UserController < ApplicationController
 
   def payers
-    
-    # render json: TransactionSerializer.new(Transaction.report )
+    render json: Transaction.report
   end
 
 end
