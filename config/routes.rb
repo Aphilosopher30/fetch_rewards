@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
 # add transaction
-  post 'user/transactions/new', to: 'transaction#create'
+  get 'user/transactions/new', to: 'transaction#create'
 
 # spend points according to ruesl
   get 'user/transactions/spend', to: 'transaction#spend'

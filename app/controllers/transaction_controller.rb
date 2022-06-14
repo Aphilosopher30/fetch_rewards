@@ -1,20 +1,22 @@
 class TransactionController < ApplicationController
 
   def create
+    # binding.pry
     data = {payer: params[:payer], points: params[:points].to_i}
     begin
-      data[:time_stamp] = Time.parse(params[:time_stamp])
+      data[:timestamp] = Time.parse(params[:timestamp])
     rescue ArgumentError, TypeError
-      data[:time_stamp] = Time.now
+      data[:timestamp] = Time.now
     end
-
+    #
     new_transaction = Transaction.new(data)
-
+    #
     render json: TransactionSerializer.new(new_transaction)
   end
 
 
   def spend
+    # binding.pry
     cost = params[:points].to_i
     spent_points = Transaction.spent_hash
     Transaction.sort_aquired_points_by_date.each do |transaction|
@@ -32,7 +34,7 @@ class TransactionController < ApplicationController
       who_pays = []
       spent_points.each do |payer, point_value|
         if point_value > 0
-          data = {payer: payer, points: point_value*-1, time_stamp: Time.now}
+          data = {payer: payer, points: point_value*-1, timestamp: Time.now}
           new_transaction = Transaction.new(data)
           who_pays << {payer: new_transaction.payer, points: new_transaction.points}
         end
