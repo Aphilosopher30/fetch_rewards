@@ -1,9 +1,9 @@
 class Transaction # < ApplicationRecord
-  attr_reader :payer, :points, :time_stamp, :id
+  attr_reader :payer, :points, :timestamp, :id
 
   # validates :payer, presence: true
   # validates :points, presence: true
-  # validates :time_stamp, presence: true
+  # validates :timestamp, presence: true
 
   @@instances = []
 
@@ -11,7 +11,7 @@ class Transaction # < ApplicationRecord
     @id = nil
     @payer = data[:payer]
     @points = data[:points]
-    @time_stamp = data[:time_stamp]
+    @timestamp = data[:timestamp]
     @@instances << self
   end
 
@@ -46,7 +46,7 @@ class Transaction # < ApplicationRecord
   end
 
   def self.sort_aquired_points_by_date
-    self.all_positive.sort_by { |obj| obj.time_stamp.to_i }
+    self.all_positive.sort_by { |obj| obj.timestamp.to_i }
   end
 
   def self.report
