@@ -9,7 +9,7 @@ RSpec.describe Transaction do
       data = {
               payer: "company co",
               points: 100,
-              time_stamp: time0
+              timestamp: time0
               }
 
 
@@ -17,7 +17,7 @@ RSpec.describe Transaction do
 
       expect(transaction.payer).to eq('company co')
       expect(transaction.points).to eq(100)
-      expect(transaction.time_stamp).to eq(time0)
+      expect(transaction.timestamp).to eq(time0)
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe Transaction do
       data = {
               payer: "company co",
               points: 100,
-              time_stamp: time
+              timestamp: time
               }
       transaction = Transaction.new(data)
 
@@ -36,7 +36,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 300,
-              time_stamp: time2
+              timestamp: time2
               }
       transaction2 = Transaction.new(data2)
 
@@ -56,7 +56,7 @@ RSpec.describe Transaction do
       data = {
               payer: "company co",
               points: 100,
-              time_stamp: time
+              timestamp: time
               }
 
       transaction = Transaction.new(data)
@@ -65,7 +65,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 300,
-              time_stamp: time2
+              timestamp: time2
               }
 
       transaction2 = Transaction.new(data2)
@@ -81,7 +81,7 @@ RSpec.describe Transaction do
       data = {
               payer: "company co",
               points: -100,
-              time_stamp: time
+              timestamp: time
               }
       transaction = Transaction.new(data)
 
@@ -89,7 +89,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 500,
-              time_stamp: time2
+              timestamp: time2
               }
       transaction2 = Transaction.new(data2)
 
@@ -97,7 +97,7 @@ RSpec.describe Transaction do
       data3 = {
               payer: "binsnss bizz",
               points: -300,
-              time_stamp: time3
+              timestamp: time3
               }
       transaction3 = Transaction.new(data3)
 
@@ -114,7 +114,7 @@ RSpec.describe Transaction do
       data = {
               payer: "company co",
               points: -100,
-              time_stamp: time
+              timestamp: time
               }
 
       transaction1 = Transaction.new(data)
@@ -122,7 +122,7 @@ RSpec.describe Transaction do
       data1 = {
               payer: "company co",
               points: -150,
-              time_stamp: time1
+              timestamp: time1
               }
       transaction1 = Transaction.new(data1)
 
@@ -131,7 +131,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 500,
-              time_stamp: time2
+              timestamp: time2
               }
       transaction2 = Transaction.new(data2)
 
@@ -139,7 +139,7 @@ RSpec.describe Transaction do
       data4 = {
               payer: "abC corp",
               points: -400,
-              time_stamp: time4
+              timestamp: time4
               }
       transaction4 = Transaction.new(data4)
 
@@ -147,7 +147,7 @@ RSpec.describe Transaction do
       data5 = {
               payer: "binsnss bizz",
               points: -300,
-              time_stamp: time5
+              timestamp: time5
               }
       transaction5 = Transaction.new(data5)
 
@@ -155,7 +155,7 @@ RSpec.describe Transaction do
       data6 = {
               payer: "Ink inc.",
               points: 600,
-              time_stamp: time6
+              timestamp: time6
               }
       transaction6 = Transaction.new(data6)
 
@@ -174,7 +174,7 @@ RSpec.describe Transaction do
       data0 = {
               payer: "company co",
               points: 100,
-              time_stamp: time0
+              timestamp: time0
               }
 
       transaction = Transaction.new(data0)
@@ -183,7 +183,7 @@ RSpec.describe Transaction do
       data1 = {
               payer: "company co",
               points: 150,
-              time_stamp: time1
+              timestamp: time1
               }
       transaction1 = Transaction.new(data1)
 
@@ -192,7 +192,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 500,
-              time_stamp: time2
+              timestamp: time2
               }
       transaction2 = Transaction.new(data2)
 
@@ -200,7 +200,7 @@ RSpec.describe Transaction do
       data4 = {
               payer: "abC corp",
               points: 400,
-              time_stamp: time4
+              timestamp: time4
               }
       transaction4 = Transaction.new(data4)
 
@@ -208,7 +208,7 @@ RSpec.describe Transaction do
       data5 = {
               payer: "binsnss bizz",
               points: 300,
-              time_stamp: time5
+              timestamp: time5
               }
       transaction5 = Transaction.new(data5)
 
@@ -216,23 +216,23 @@ RSpec.describe Transaction do
       data6 = {
               payer: "Ink inc.",
               points: 600,
-              time_stamp: time6
+              timestamp: time6
               }
       transaction6 = Transaction.new(data6)
 
-      expect(Transaction.all[0].time_stamp).to eq(time0)
-      expect(Transaction.all[1].time_stamp).to eq(time1)
-      expect(Transaction.all[2].time_stamp).to eq(time2)
-      expect(Transaction.all[3].time_stamp).to eq(time4)
-      expect(Transaction.all[4].time_stamp).to eq(time5)
-      expect(Transaction.all[5].time_stamp).to eq(time6)
+      expect(Transaction.all[0].timestamp).to eq(time0)
+      expect(Transaction.all[1].timestamp).to eq(time1)
+      expect(Transaction.all[2].timestamp).to eq(time2)
+      expect(Transaction.all[3].timestamp).to eq(time4)
+      expect(Transaction.all[4].timestamp).to eq(time5)
+      expect(Transaction.all[5].timestamp).to eq(time6)
 
-      expect(Transaction.sort_aquired_points_by_date[0].time_stamp).to eq(time4)
-      expect(Transaction.sort_aquired_points_by_date[1].time_stamp).to eq(time2)
-      expect(Transaction.sort_aquired_points_by_date[2].time_stamp).to eq(time0)
-      expect(Transaction.sort_aquired_points_by_date[3].time_stamp).to eq(time1)
-      expect(Transaction.sort_aquired_points_by_date[4].time_stamp).to eq(time6)
-      expect(Transaction.sort_aquired_points_by_date[5].time_stamp).to eq(time5)
+      expect(Transaction.sort_aquired_points_by_date[0].timestamp).to eq(time4)
+      expect(Transaction.sort_aquired_points_by_date[1].timestamp).to eq(time2)
+      expect(Transaction.sort_aquired_points_by_date[2].timestamp).to eq(time0)
+      expect(Transaction.sort_aquired_points_by_date[3].timestamp).to eq(time1)
+      expect(Transaction.sort_aquired_points_by_date[4].timestamp).to eq(time6)
+      expect(Transaction.sort_aquired_points_by_date[5].timestamp).to eq(time5)
     end
 
     it '.report ' do
@@ -242,7 +242,7 @@ RSpec.describe Transaction do
       data0 = {
               payer: "company co",
               points: 100,
-              time_stamp: time0
+              timestamp: time0
               }
 
       transaction0 = Transaction.new(data0)
@@ -251,7 +251,7 @@ RSpec.describe Transaction do
       data1 = {
               payer: "company co",
               points: 150,
-              time_stamp: time1
+              timestamp: time1
               }
       transaction1 = Transaction.new(data1)
 
@@ -260,7 +260,7 @@ RSpec.describe Transaction do
       data2 = {
               payer: "binsnss bizz",
               points: 500,
-              time_stamp: time2
+              timestamp: time2
               }
       transaction2 = Transaction.new(data2)
 
@@ -268,7 +268,7 @@ RSpec.describe Transaction do
       data3 = {
               payer: "abC corp",
               points: 400,
-              time_stamp: time3
+              timestamp: time3
               }
       transaction3 = Transaction.new(data3)
 
@@ -276,7 +276,7 @@ RSpec.describe Transaction do
       data4 = {
               payer: "abC corp",
               points: -180,
-              time_stamp: time4
+              timestamp: time4
               }
       transaction4 = Transaction.new(data4)
 
@@ -284,7 +284,7 @@ RSpec.describe Transaction do
       data5 = {
               payer: "binsnss bizz",
               points: -300,
-              time_stamp: time5
+              timestamp: time5
               }
       transaction5 = Transaction.new(data5)
 
@@ -292,7 +292,7 @@ RSpec.describe Transaction do
       data6 = {
               payer: "Ink inc.",
               points: 600,
-              time_stamp: time6
+              timestamp: time6
               }
       transaction6 = Transaction.new(data6)
 

@@ -8,7 +8,7 @@ RSpec.describe 'transactions request ', type: :request do
 
         prior_transactions = Transaction.all.count
 
-        post '/user/transactions/new', params: {payer: "abbs Corp", points: '500', time_stamp: "2020-10-31T11:00:00Z"}
+        get '/user/transactions/new', params: {payer: "abbs Corp", points: '500', timestamp: "2020-10-31T11:00:00Z"}
 
         expect(response).to be_successful
         expect(response.status).to eq(200)
@@ -21,18 +21,18 @@ RSpec.describe 'transactions request ', type: :request do
         expect(transaction_data[:data][:type]).to eq("transaction")
         expect(transaction_data[:data][:attributes][:payer]).to eq("abbs Corp")
         expect(transaction_data[:data][:attributes][:points]).to eq(500)
-        expect(transaction_data[:data][:attributes][:time_stamp]).to eq("2020-10-31T11:00:00.000Z")
+        expect(transaction_data[:data][:attributes][:timestamp]).to eq("2020-10-31T11:00:00.000Z")
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
 
-      it 'can handle not being given a time_stamp' do
+      it 'can handle not being given a timestamp' do
         prior_transactions = Transaction.all.count
 
         time = Time.now.round(3)
         allow(Time).to receive(:now).and_return(time)
 
-        post '/user/transactions/new', params: {payer: "abbs Corp", points: '500'}
+        get '/user/transactions/new', params: {payer: "abbs Corp", points: '500'}
 
 
         expect(response).to be_successful
@@ -45,7 +45,7 @@ RSpec.describe 'transactions request ', type: :request do
         expect(transaction_data[:data][:type]).to eq("transaction")
         expect(transaction_data[:data][:attributes][:payer]).to eq("abbs Corp")
         expect(transaction_data[:data][:attributes][:points]).to eq(500)
-        expect(Time.parse(transaction_data[:data][:attributes][:time_stamp])).to eq(time)
+        expect(Time.parse(transaction_data[:data][:attributes][:timestamp])).to eq(time)
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
@@ -56,7 +56,7 @@ RSpec.describe 'transactions request ', type: :request do
         time = Time.now.round(3)
         allow(Time).to receive(:now).and_return(time)
 
-        post '/user/transactions/new', params: {payer: "abbs Corp", points: 500, time_stamp: "afadsfdsaf"}
+        get '/user/transactions/new', params: {payer: "abbs Corp", points: 500, timestamp: "afadsfdsaf"}
 
 
         expect(response).to be_successful
@@ -69,7 +69,7 @@ RSpec.describe 'transactions request ', type: :request do
         expect(transaction_data[:data][:type]).to eq("transaction")
         expect(transaction_data[:data][:attributes][:payer]).to eq("abbs Corp")
         expect(transaction_data[:data][:attributes][:points]).to eq(500)
-        expect(Time.parse(transaction_data[:data][:attributes][:time_stamp])).to eq(time)
+        expect(Time.parse(transaction_data[:data][:attributes][:timestamp])).to eq(time)
 
         expect(Transaction.all.count).to eq(prior_transactions+1)
       end
@@ -86,11 +86,11 @@ RSpec.describe 'transactions request ', type: :request do
     it "it adds negative transactions" do
       Transaction.delete_all
 
-      data0 = { payer: "DANNON", points: 1000, time_stamp: Time.parse("2020-11-02T14:00:00Z") }#5
-      data1 = { payer: "UNILEVER", points: 200, time_stamp: Time.parse("2020-10-31T11:00:00Z") }#2
-      data2 = { payer: "DANNON", points: -200, time_stamp: Time.parse("2020-10-31T15:00:00Z") }#3
-      data3 = { payer: "MILLER COORS", points: 10000, time_stamp: Time.parse("2020-11-01T14:00:00Z") }#4
-      data4 = { payer: "DANNON", points: 300, time_stamp: Time.parse("2020-10-31T10:00:00Z") }#1
+      data0 = { payer: "DANNON", points: 1000, timestamp: Time.parse("2020-11-02T14:00:00Z") }#5
+      data1 = { payer: "UNILEVER", points: 200, timestamp: Time.parse("2020-10-31T11:00:00Z") }#2
+      data2 = { payer: "DANNON", points: -200, timestamp: Time.parse("2020-10-31T15:00:00Z") }#3
+      data3 = { payer: "MILLER COORS", points: 10000, timestamp: Time.parse("2020-11-01T14:00:00Z") }#4
+      data4 = { payer: "DANNON", points: 300, timestamp: Time.parse("2020-10-31T10:00:00Z") }#1
 
       transaction0 = Transaction.new(data0)
       transaction1 = Transaction.new(data1)
@@ -117,11 +117,11 @@ RSpec.describe 'transactions request ', type: :request do
     it "it returns proper response" do
       Transaction.delete_all
 
-      data0 = { payer: "DANNON", points: 1000, time_stamp: Time.parse("2020-11-02T14:00:00Z") }#5
-      data1 = { payer: "UNILEVER", points: 200, time_stamp: Time.parse("2020-10-31T11:00:00Z") }#2
-      data2 = { payer: "DANNON", points: -200, time_stamp: Time.parse("2020-10-31T15:00:00Z") }#3
-      data3 = { payer: "MILLER COORS", points: 10000, time_stamp: Time.parse("2020-11-01T14:00:00Z") }#4
-      data4 = { payer: "DANNON", points: 300, time_stamp: Time.parse("2020-10-31T10:00:00Z") }#1
+      data0 = { payer: "DANNON", points: 1000, timestamp: Time.parse("2020-11-02T14:00:00Z") }#5
+      data1 = { payer: "UNILEVER", points: 200, timestamp: Time.parse("2020-10-31T11:00:00Z") }#2
+      data2 = { payer: "DANNON", points: -200, timestamp: Time.parse("2020-10-31T15:00:00Z") }#3
+      data3 = { payer: "MILLER COORS", points: 10000, timestamp: Time.parse("2020-11-01T14:00:00Z") }#4
+      data4 = { payer: "DANNON", points: 300, timestamp: Time.parse("2020-10-31T10:00:00Z") }#1
 
       transaction0 = Transaction.new(data0)
       transaction1 = Transaction.new(data1)
@@ -156,11 +156,11 @@ RSpec.describe 'transactions request ', type: :request do
 
       Transaction.delete_all
 
-      data0 = { payer: "DANNON", points: 1000, time_stamp: Time.parse("2020-11-02T14:00:00Z") }#5
-      data1 = { payer: "UNILEVER", points: 200, time_stamp: Time.parse("2020-10-31T11:00:00Z") }#2
-      data2 = { payer: "DANNON", points: -200, time_stamp: Time.parse("2020-10-31T15:00:00Z") }#3
-      data3 = { payer: "MILLER COORS", points: 10000, time_stamp: Time.parse("2020-11-01T14:00:00Z") }#4
-      data4 = { payer: "DANNON", points: 300, time_stamp: Time.parse("2020-10-31T10:00:00Z") }#1
+      data0 = { payer: "DANNON", points: 1000, timestamp: Time.parse("2020-11-02T14:00:00Z") }#5
+      data1 = { payer: "UNILEVER", points: 200, timestamp: Time.parse("2020-10-31T11:00:00Z") }#2
+      data2 = { payer: "DANNON", points: -200, timestamp: Time.parse("2020-10-31T15:00:00Z") }#3
+      data3 = { payer: "MILLER COORS", points: 10000, timestamp: Time.parse("2020-11-01T14:00:00Z") }#4
+      data4 = { payer: "DANNON", points: 300, timestamp: Time.parse("2020-10-31T10:00:00Z") }#1
 
       transaction0 = Transaction.new(data0)
       transaction1 = Transaction.new(data1)
