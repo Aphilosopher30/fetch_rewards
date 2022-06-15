@@ -8,9 +8,13 @@ Languages and Frameworks:
 Set Up Instructions:
 
 a. From in the github repository, copy the ssh key "git@github.com:Aphilosopher30/fetch_rewards.git"
+
 b. Use what you copied in your terminal by entering ```$ git clone git@github.com:Aphilosopher30/quiz_app.git```
+
 c. Enter into the folder that you just cloned, probably by entering $ cd quiz_app
+
 d. In terminal run the bundler: ```$ bundler``` or ```$ bundle install```
+
 e. To start server terminal run ```$ rails s```, or ```$ rails server```
 
 
