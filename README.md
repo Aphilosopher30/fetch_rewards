@@ -9,7 +9,7 @@
 
 <h3>Set Up Instructions:</h3>
 
-   a) Enter  ```$ git clone git@github.com:Aphilosopher30/fetch_rewards.git``` into your terminal 
+   a) Enter  ```$ git clone https://github.com/Aphilosopher30/fetch_rewards.git``` into your terminal 
 
    b) Enter the folder that you just cloned, probably by entering ```$ cd fetch_rewards```
 
