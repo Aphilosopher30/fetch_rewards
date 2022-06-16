@@ -9,19 +9,17 @@
 
 <h3>Set Up Instructions:</h3>
 
-   a) From in the github repository, copy the ssh key "git@github.com:Aphilosopher30/fetch_rewards.git"
+   a) Enter  ```$ git clone git@github.com:Aphilosopher30/fetch_rewards.git``` into your terminal 
 
-   b) Use what you copied in your terminal by entering ```$ git clone git@github.com:Aphilosopher30/fetch_rewards.git```
+   b) Enter into the folder that you just cloned, probably by entering ```$ cd fetch_rewards```
 
-   c) Enter into the folder that you just cloned, probably by entering ```$ cd fetch_rewards```
-
-   d) In terminal run the bundler: ```$ bundler``` or ```$ bundle install```
+   c) In terminal run the bundler: ```$ bundler``` or ```$ bundle install```
    
    - you may have to download bundler with ```$ gem install bundler``` to make this work 
    
    - if you cannot use Ruby 2.5.3, then you may have to enter into the Gemfile, and change the vertion there 
 
-   e) To start server terminal run ```$ rails s```, or ```$ rails server```
+   d) To start server terminal run ```$ rails s```, or ```$ rails server```
 
 
 
