@@ -11,15 +11,15 @@
 
    a) Enter  ```$ git clone git@github.com:Aphilosopher30/fetch_rewards.git``` into your terminal 
 
-   b) Enter into the folder that you just cloned, probably by entering ```$ cd fetch_rewards```
+   b) Enter the folder that you just cloned, probably by entering ```$ cd fetch_rewards```
 
    c) In terminal run the bundler: ```$ bundler``` or ```$ bundle install```
    
    - you may have to download bundler with ```$ gem install bundler``` to make this work 
    
-   - if you cannot use Ruby 2.5.3, then you may have to enter into the Gemfile, and change the vertion there 
+   - if you cannot use Ruby 2.5.3, then you may have to open the Gemfile, and change the version there 
 
-   d) To start server terminal run ```$ rails s```, or ```$ rails server```
+   d) To start the server terminal run ```$ rails s```, or ```$ rails server```
 
 
 
@@ -70,7 +70,7 @@ OR
 
 ------
 
-C. _List Payer Balances:_ This provides a JSON object that lists each payer, and how and how many points the user currently has from that payer. It does not require any input in the body.
+C. _List Payer Balances:_ This provides a JSON object that lists each payer, and how many points the user currently has from that payer. It does not require any input in the body.
 
   URL: ```get '/user/payers'```
 
